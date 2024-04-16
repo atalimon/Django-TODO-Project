@@ -1,0 +1,64 @@
+<head>
+	<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<!-- component -->
+<!-- Create by joker banny -->
+<div class="h-screen bg-indigo-100 flex justify-center items-center">
+	<div class="lg:w-2/5 md:w-1/2 w-2/3">
+		<form method="post" class="group bg-white p-10 rounded-lg shadow-lg min-w-full" novalidate>
+			<h1 class="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">Login</h1>
+			<div>
+                {% csrf_token %}
+				<div>
+					<label class="text-gray-800 font-semibold block my-3 text-md" for="username">Email</label>
+					<input class="w-full peer bg-gray-100 px-4 py-2 rounded-lg focus:outline-none border invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500" type="email" name="email" maxlength="30" minlength="1" id="email" placeholder="@email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"  required />
+					<span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
+						Please enter a valid email address
+					  </span>
+				</div>
+      
+
+					<div>
+						<label class="text-gray-800 font-semibold block my-3 text-md" for="password">Password</label>
+						<input class="w-full peer bg-gray-100 px-4 py-2 rounded-lg focus:outline-none invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500" type="password" minlength="1" name="password" id="password" placeholder="password" required/>
+                        <span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
+							Please enter a valid passwprd
+						  </span>
+					</div>
+
+							<button type="submit" class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans  group-invalid:pointer-events-none group-invalid:opacity-30">Login</button>
+							<span >Do you have an account? <a class="text-indigo-600" href="{% url 'register' %}"><b>Register</b></a> here!</span>		
+							
+		</form>
+
+	</div>
+	{% if form.errors %}
+	<div class="error-messages  ">
+		{% for field, errors in form.errors.items %}
+			{% for error in errors %}
+			<div  class="error errorbar p-3 text-center bg-red-600 text-white w-12/9 h-14 rounded-lg m-4 static flex flex-row justify-center">
+				<p class="w-9/12"> {{ error }}</p>
+				<button id="closebtn"><span class="material-symbols-outlined relative top-0 left-0">
+					cancel
+					</span>
+				</button>
+			</div>
+			<script defer>
+				let closebtn = document.getElementById('closebtn')
+				let errorbar = document.querySelector('.error-messages')
+
+				
+
+				closebtn.addEventListener('click', () => {
+					errorbar.classList.add('hidden')
+					
+				} )
+
+
+			</script>
+			{% endfor %}
+		{% endfor %}
+	</div>
+{% endif %}
+</div>
