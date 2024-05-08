@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts',
-    'theme'
+    'profiles', 
+    "posts"
 ]
 
 MIDDLEWARE = [
@@ -124,12 +124,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = "accounts.CustomUser"
+AUTH_USER_MODEL = "profiles.CustomUser"
 
+LOGIN_URL = 'profiles/login/'
+LOGIN_REDIRECT_URL = '/posts/'
 
-LOGIN_REDIRECT_URL = 'register'
-
-TAILWIND_APP_NAME = 'theme'
 
 INTERNAL_IPS = [
     '127.0.0.1',

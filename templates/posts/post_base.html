@@ -1,0 +1,92 @@
+{%extends 'base.html' %}
+{% block title %}
+LIST VIEW TITLE
+{% endblock  %}
+
+{% block controller1 %} {% url 'post-create' %} {% endblock%}
+{% block controller1title %} Create {% endblock%}
+
+{% block content %}
+<div class="center">
+	<table class="posts w-full text-center">
+		<thead>
+			<tr class="text-indigo-500 text-lg">
+				<th id="titles">Title</th>
+				<th id="statuses">Status</a></th>
+				<th id="times">Time</a></th>
+				<th id="action">Actions</th>
+				<script> 
+					const currentUrl = window.location.href;
+
+					const titleBtn = document.getElementById('titles')
+					const statsBtn = document.getElementById('statuses')
+					const timesBtn = document.getElementById('times')
+
+					statsBtn.addEventListener('click', function (){
+					
+					window.location = 'http://127.0.0.1:8000/posts/?sort_by=completed_asc'
+
+					if (currentUrl === 'http://127.0.0.1:8000/posts/?sort_by=completed_asc') {
+						window.location = 'http://127.0.0.1:8000/posts/?sort_by=completed_desc'
+					} else {
+						window.location = 'http://127.0.0.1:8000/posts/?sort_by=completed_asc'
+					}
+					})
+
+
+					titleBtn.addEventListener('click', function (){
+					
+					window.location = 'http://127.0.0.1:8000/posts/?sort_by=title_asc'
+
+					if (currentUrl === 'http://127.0.0.1:8000/posts/?sort_by=title_asc') {
+						window.location = 'http://127.0.0.1:8000/posts/?sort_by=title_desc'
+					} else {
+						window.location = 'http://127.0.0.1:8000/posts/?sort_by=title_asc'
+					}
+					})
+					
+
+					timesBtn.addEventListener('click', function (){
+					
+					window.location = 'http://127.0.0.1:8000/posts/?sort_by=created_at_asc'
+
+					if (currentUrl === 'http://127.0.0.1:8000/posts/?sort_by=created_at_asc') {
+						window.location = 'http://127.0.0.1:8000/posts/?sort_by=created_at_desc'
+					} else {
+						window.location = 'http://127.0.0.1:8000/posts/?sort_by=created_at_asc'
+					}
+					})
+					</script>
+			</tr>
+		</thead>
+		<tbody class="">
+			{% for post in posts %}
+			<tr class="h-10 ">
+				<td><a href="{% url 'post' post.id %}" class="{% if post.completed %}completed{% endif %}">{{ post.title }}</a></td>
+				<td>{% if post.completed %}<span class="material-symbols-outlined">
+					done
+					</span>{% else %}<span class="material-symbols-outlined">
+						hourglass_empty
+						</span>{% endif %}</td>
+				<td>{{ post.created_at|timesince }} ago</td>
+				<td class="task-controls">
+					<a href="{% url 'post-delete' post.id %}"><i class="bi bi-trash"></i><span class="material-symbols-outlined">
+						delete
+						</span></a>
+					<a href="{% url 'post-update' post.id %}"><i class="bi bi-pencil-square"></i><span class="material-symbols-outlined">
+						edit
+						</span></a>
+				</td>
+			</tr>
+			{% endfor %}
+			{% if not posts %}
+			<tr>
+				<td colspan="4" class="text-center">You have no pending posts! Let's <a href="{% url 'post-create' %}">Create a Post!</a></td>
+			</tr>
+			{% endif %}
+		</tbody>
+	</table>
+	
+</div>
+
+{% endblock  %}

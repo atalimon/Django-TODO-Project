@@ -1,0 +1,39 @@
+{%extends 'base.html'%}
+{%block title%} Creat a Task {%endblock%}
+
+{%block controller1%} {%url 'posts'%} {%endblock%}
+
+{%block controller1title%} Tasks {%endblock%}
+{%block content%}
+
+<div class="center">
+	<form method="post" novalidate class="card">
+	 	{%csrf_token %}
+	 	
+	 	<h2 class="text-2xl text-indigo-500 font-semibold">Create Post</h2>
+		{% for field in form %}
+			{% if field.name == 'completed' %}
+				<p class="titless">
+					{{ field.label_tag }}
+					{{ field }}
+				</p>
+				{% if field.errors %}
+	        		<small class="error">{{ field.errors|striptags  }}</small> 
+	        	{% endif %}
+			{% else %}
+	    		{{ field.label_tag }} 
+	        	{{ field }}
+	        	{% if field.errors %}
+	        		<small class="error">{{ field.errors|striptags  }}</small> 
+	        	{% endif %}
+	        {% endif %}
+		{% endfor %}
+		
+		<div class="form-buttons">
+			<input type="submit" value="Create" class="btn btn-primary"/>
+			<a href="{%url 'posts'%}" class="btn btn-outline">Cancel</a>
+		</div>
+	</form>
+</div>
+
+{%endblock content%}

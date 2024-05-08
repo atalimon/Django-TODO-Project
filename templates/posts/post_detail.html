@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+
+
+
+{% block controller1 %} {% url 'posts' %} {% endblock%}
+{% block controller1title %} Tasks {% endblock%}
+{%block content%}
+<article class="task h-full flex flex-col">
+	<header class="flex w-full justify-center text-center h-12">
+		<h2>{{ post.title }}</h2>
+		
+	</header>
+
+	<h2 class="text-red-400 flex justify-center text-start w-full h-56">{{post.description}}</h2>
+
+	<span class=" flex justify-center w-full h-3/12 badge {% if task.completed %}badge-completed{% else %}badge-pending{%endif%}">
+		{% if post.completed %} Completed {%else%} Pending {%endif%}
+	</span>
+
+</article>
+
+{%endblock content%}
