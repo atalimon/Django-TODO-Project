@@ -6,32 +6,17 @@
 {%block controller1title%} Tasks {%endblock%}
 {%block content%}
 
-<div class="center">
-	<form method="post" novalidate class="card">
+<div class="center w-full h-full">
+	<form method="post" novalidate class=" p-4 card sm:w-full sm:h-full xl:w-full xl:h-[520px] flex flex-col sm:mt-7">
 	 	{%csrf_token %}
 	 	
-	 	<h2 class="text-2xl text-indigo-500 font-semibold">Create Post</h2>
-		{% for field in form %}
-			{% if field.name == 'completed' %}
-				<p class="titless">
-					{{ field.label_tag }}
-					{{ field }}
-				</p>
-				{% if field.errors %}
-	        		<small class="error">{{ field.errors|striptags  }}</small> 
-	        	{% endif %}
-			{% else %}
-	    		{{ field.label_tag }} 
-	        	{{ field }}
-	        	{% if field.errors %}
-	        		<small class="error">{{ field.errors|striptags  }}</small> 
-	        	{% endif %}
-	        {% endif %}
-		{% endfor %}
+	 	<h2 class="m-2 xl:text-2xl sm:text-7xl text-indigo-500 font-semibold">Create Post</h2>
+		<input type="text" name="title" maxlength="40" required id="id_title" placeholder="Give a name for your Task.." class="rounded-lg p-2 bg-indigo-50 sm:text-6xl sm:mt-2">
+		<textarea name="description" cols="30" rows="10" id="id_description" placeholder="Describe your task..." class="mt-2 rounded-lg p-2 bg-indigo-50 sm:text-6xl sm:mt-4"></textarea> 
 		
-		<div class="form-buttons">
-			<input type="submit" value="Create" class="btn btn-primary"/>
-			<a href="{%url 'posts'%}" class="btn btn-outline">Cancel</a>
+		<div class="form-buttons p-3 m-3">
+			<button type="submit" value="Create" class="sm:text-5xl sm:p-4 border hover:border-indigo-600 rounded-lg text-white btn btn-primary cursor-pointer bg-indigo-600 hover:bg-white hover:text-indigo-600 p-2">Create</button>
+			<button class="sm:text-5xl sm:p-4 border hover:border-indigo-600 btn btn-outline cursor-pointer bg-indigo-600 rounded-lg text-white hover:bg-white hover:text-indigo-600 p-2" ><a href="{%url 'posts'%}">Cancel</a></button>
 		</div>
 	</form>
 </div>

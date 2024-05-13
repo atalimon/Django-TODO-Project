@@ -8,10 +8,9 @@ from django.contrib.auth.views import LoginView, LogoutView
 class CustomLoginView(LoginView):
     template_name = 'profiles/login.html'
     form_class = CustomAuthForm
-    success_url = reverse_lazy('posts/')
+    success_url = reverse_lazy('posts')
 
 class CustomRegisterForm(CreateView):
     template_name = 'profiles/register.html'
     form_class = CustomUserCreationForm
-    redirect_authenticated_user = True
-    success_url = reverse_lazy('posts/')
+    success_url = reverse_lazy('login')

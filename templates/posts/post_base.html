@@ -7,86 +7,108 @@ LIST VIEW TITLE
 {% block controller1title %} Create {% endblock%}
 
 {% block content %}
-<div class="center">
-	<table class="posts w-full text-center">
-		<thead>
-			<tr class="text-indigo-500 text-lg">
-				<th id="titles">Title</th>
-				<th id="statuses">Status</a></th>
-				<th id="times">Time</a></th>
-				<th id="action">Actions</th>
-				<script> 
-					const currentUrl = window.location.href;
 
-					const titleBtn = document.getElementById('titles')
-					const statsBtn = document.getElementById('statuses')
-					const timesBtn = document.getElementById('times')
 
-					statsBtn.addEventListener('click', function (){
-					
+<div class="overflow-scroll w-full rounded-lg ">
+    <table class="xl:w-full  sm:w-full sm:h-full xl:text-sm sm:text-4xl text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="xl:text-lg  sm:text-5xl text-gray-700 uppercase bg-indigo-50 dark:bg-indigo-700 dark:text-white">
+            <tr>
+                <th id="titles" scope="col" class="px-6 py-3 cursor-pointer hover:text-indigo-900">
+                    Titles
+                </th>
+                <th id="statuses" scope="col" class="px-6 py-3 cursor-pointer hover:text-indigo-900">
+                    <div class="flex items-center">
+                        Status
+    <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
+  </svg></a>
+                    </div>
+                </th>
+                <th id="times" scope="col" class="px-6 py-3 cursor-pointer hover:text-indigo-900">
+                    <div class="flex items-center">
+                        Time
+  </svg></a>
+                    </div>
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <span class="sr-only">Edit</span>
+					<span class="sr-only">Del</span>
+                </th>
+            </tr>
+			<script> 
+				const currentUrl = window.location.href;
+
+				const titleBtn = document.getElementById('titles')
+				const statsBtn = document.getElementById('statuses')
+				const timesBtn = document.getElementById('times')
+
+				statsBtn.addEventListener('click', function (){
+				
+				window.location = 'http://127.0.0.1:8000/posts/?sort_by=completed_asc'
+
+				if (currentUrl === 'http://127.0.0.1:8000/posts/?sort_by=completed_asc') {
+					window.location = 'http://127.0.0.1:8000/posts/?sort_by=completed_desc'
+				} else {
 					window.location = 'http://127.0.0.1:8000/posts/?sort_by=completed_asc'
-
-					if (currentUrl === 'http://127.0.0.1:8000/posts/?sort_by=completed_asc') {
-						window.location = 'http://127.0.0.1:8000/posts/?sort_by=completed_desc'
-					} else {
-						window.location = 'http://127.0.0.1:8000/posts/?sort_by=completed_asc'
-					}
-					})
+				}
+				})
 
 
-					titleBtn.addEventListener('click', function (){
-					
+				titleBtn.addEventListener('click', function (){
+				
+				window.location = 'http://127.0.0.1:8000/posts/?sort_by=title_asc'
+
+				if (currentUrl === 'http://127.0.0.1:8000/posts/?sort_by=title_asc') {
+					window.location = 'http://127.0.0.1:8000/posts/?sort_by=title_desc'
+				} else {
 					window.location = 'http://127.0.0.1:8000/posts/?sort_by=title_asc'
+				}
+				})
+				
 
-					if (currentUrl === 'http://127.0.0.1:8000/posts/?sort_by=title_asc') {
-						window.location = 'http://127.0.0.1:8000/posts/?sort_by=title_desc'
-					} else {
-						window.location = 'http://127.0.0.1:8000/posts/?sort_by=title_asc'
-					}
-					})
-					
+				timesBtn.addEventListener('click', function (){
+				
+				window.location = 'http://127.0.0.1:8000/posts/?sort_by=created_at_asc'
 
-					timesBtn.addEventListener('click', function (){
-					
+				if (currentUrl === 'http://127.0.0.1:8000/posts/?sort_by=created_at_asc') {
+					window.location = 'http://127.0.0.1:8000/posts/?sort_by=created_at_desc'
+				} else {
 					window.location = 'http://127.0.0.1:8000/posts/?sort_by=created_at_asc'
-
-					if (currentUrl === 'http://127.0.0.1:8000/posts/?sort_by=created_at_asc') {
-						window.location = 'http://127.0.0.1:8000/posts/?sort_by=created_at_desc'
-					} else {
-						window.location = 'http://127.0.0.1:8000/posts/?sort_by=created_at_asc'
-					}
-					})
-					</script>
-			</tr>
-		</thead>
-		<tbody class="">
+				}
+				})
+				</script>
+        </thead>
+        <tbody>
 			{% for post in posts %}
-			<tr class="h-10 ">
-				<td><a href="{% url 'post' post.id %}" class="{% if post.completed %}completed{% endif %}">{{ post.title }}</a></td>
-				<td>{% if post.completed %}<span class="material-symbols-outlined">
-					done
-					</span>{% else %}<span class="material-symbols-outlined">
-						hourglass_empty
-						</span>{% endif %}</td>
-				<td>{{ post.created_at|timesince }} ago</td>
-				<td class="task-controls">
-					<a href="{% url 'post-delete' post.id %}"><i class="bi bi-trash"></i><span class="material-symbols-outlined">
-						delete
-						</span></a>
-					<a href="{% url 'post-update' post.id %}"><i class="bi bi-pencil-square"></i><span class="material-symbols-outlined">
-						edit
-						</span></a>
-				</td>
-			</tr>
+            <tr class="bg-white border-b dark:bg-indigo-800 dark:border-indigo-700">
+                <th scope="row" class="px-6 py-4 font-medium text-indigo-500 whitespace-nowrap dark:text-white hover:text-indigo-500">
+                    {% if post.completed %}
+					<a class="line-through" href="{% url 'post' post.id %}">
+                    {{ post.title }} </a>
+                    {% else %}
+                    <a href="{% url 'post' post.id %}">
+                        {{ post.title }} </a>   
+                    {% endif %}
+                </th>
+                <td class="px-6 py-4">
+                    {% if post.completed %} DONE {% else %} PENDING {% endif %}
+                </td>
+                <td class="px-6 py-4">
+                    {{ post.created_at|timesince }}
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <a href="{% url 'post-update' post.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+					<a href="{% url 'post-delete' post.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Del</a>
+                </td>
+            </tr>
 			{% endfor %}
 			{% if not posts %}
 			<tr>
 				<td colspan="4" class="text-center">You have no pending posts! Let's <a href="{% url 'post-create' %}">Create a Post!</a></td>
 			</tr>
 			{% endif %}
-		</tbody>
-	</table>
-	
+        </tbody>
+    </table>
+
 </div>
 
 {% endblock  %}

@@ -1,15 +1,16 @@
 {%extends 'base.html'%}
-
+{% block controller1 %} {% url 'posts' %} {% endblock%}
+{% block controller1title %} Tasks {% endblock%}
 {%block content%}
-<div class="center">
-	<form method="post" class="card">
+<div class="center flex text-center items-start justify-center mt-5">
+	<form method="post" class="card sm:mt-7 sm:p-5">
 		{% csrf_token %}
-		<h2>Delete Post</h2>
-		<p>Are you sure that you want to delete "{{post}}"?</p>
-		<p class="form-buttons">
-			<input type="submit" class="btn btn-primary" value="Delete">
-			<a href="{% url 'posts'%}" class="btn btn-outline">Cancel</a>
-		</p>
+		<h2 class="text-3xl sm:text-7xl text-indigo-500 font-semibold p-4 sm:p-5">Delete Post</h2>
+		<p class="text-2xl text-black p-2 sm:text-6xl sm:p-5	">Are you sure that you want to delete "{{post}}"?</p>
+
+			<button class=" sm:text-4xl sm:p-4 cursor-pointer bg-indigo-600 hover:bg-red-500 hover:text-white hover:border-indigo-600 border rounded-lg m-1 p-2 text-white" type="submit"   value="Delete">Delete</button>
+			<button class="sm:text-4xl sm:p-4 bg-indigo-600 hover:bg-white hover:text-indigo-600 hover:border-indigo-600 border rounded-lg m-1 p-2 text-white"><a href="{% url 'posts'%}" >Cancel</a></button>
+
 	</form>
 </div>
 

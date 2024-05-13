@@ -1,44 +1,41 @@
+{% load static tailwind_tags %}
 <head>
-	<script src="https://cdn.tailwindcss.com"></script>
+	{% tailwind_css %}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
-<body class="font-mono h-screen bg-indigo-100 flex justify-center items-center ">
+<body class=" font-mono h-screen bg-indigo-100 flex justify-center items-center ">
 
-<div class=" border  bg-white p-10 rounded-lg shadow-lg w-6/12 h-3/4 flex flex-col ">
+    <div class="sm:h-full sm:w-full sm:m-3 border bg-white p-6 rounded-lg shadow-lg xl:w-6/12 xl:h-3/4 flex flex-col">
 
-    <div class="title basis-1/12 p-1 bg-slate-100 rounded-lg flex flex-row">
-        
-    <div class="w-6/12 items-start text-start ">
-     <h1 class="p-2 text-2xl text-indigo-500 font-semibold">Taskify</h1>
-    </div>
-
-    <div class=" flex text-md w-6/12   items-center justify-end">
-     {% if user.is_authenticated %}
-        <a class="bg-indigo-300 border rounded-lg m-1 p-1 text-white" href="{%block controller1%} {%endblock%}">{%block controller1title%} {%endblock%}</a> 
-        
-        <form class="item-center justify-center m-0" action= "{%url 'logout'%}" method="post">
-            {% csrf_token %}
-            <button class="bg-indigo-300 border rounded-lg m-1 p-1 text-white" type="submit">Logout</button>
-        </form>   
-
-        {% else %}
-        <a class="bg-indigo-300 border rounded-lg m-1 p-1 text-white" href="{% url 'login'%}">LogIn</a>
-        <a class="bg-indigo-300 border rounded-lg m-1 p-1 text-white" href="{% url 'register'%}" >Sign Up</a>
-        {% endif %}
-    </div>
+        <div class="sm:rounded-e-md sm:basis-1/12 title xl:basis-2/12 p-1 bg-indigo-100 rounded-lg flex flex-row">
+            
+            <div class="w-full sm:items-center sm:text-center sm:flex sm:justify-center xl:w-6/12 xl:items-center">
+                <h1 class="text-center sm:text-8xl sm:font-extrabold  sm:text-indigo-600 xl:text-6xl xl:text-indigo-600 xl:font-extrabold">Taskify</h1>
+            </div>
     
-    </div>
-
-
-     <div class="content text-center bg-slate-100 rounded-lg mt-1 text-xl p-1 basis-11/12 justify-center items-center p-5">
-        {%block content%}
+            <div class=" flex text-md xl:w-6/12 items-center justify-end  ">
+                {% if user.is_authenticated %}
+                <button class=" xl:w-32 xl:h-14 sm:rounded-2xl sm:text-4xl sm:h-28 sm:w-32 bg-indigo-600 hover:bg-white hover:text-indigo-600 hover:border-indigo-600 border rounded-md m-1 p-1 text-white xl:text-xl"><a href="{% block controller1 %}{% endblock %}">{% block controller1title %}{% endblock %}</a></button>
+            
+                <form class="item-center justify-center m-0" action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button class=" xl:w-32 xl:h-14 sm:rounded-2xl sm:text-4xl sm:h-28 sm:w-32 bg-indigo-600 hover:bg-white hover:text-indigo-600 hover:border-indigo-600 border rounded-md m-1 p-1 text-white xl:text-xl" type="submit">Logout</button>
+                </form>   
     
-        {%endblock%}
+                {% else %}
+                <button class=" xl:w-32 xl:h-14 sm:rounded-2xl sm:text-4xl sm:h-28 sm:w-32 bg-indigo-600 hover:bg-white hover:text-indigo-600 hover:border-indigo-600 border rounded-md m-1 p-1 text-white xl:text-xl"><a  href="{% url 'login' %}">LogIn</a></button>
+                <button class=" xl:w-32 xl:h-14 sm:rounded-2xl sm:text-4xl sm:h-28 sm:w-32 bg-indigo-600 hover:bg-white hover:text-indigo-600 hover:border-indigo-600 border rounded-md m-1 p-1 text-white xl:text-xl"><a  href="{% url 'register' %}">Sign Up</a></button>
+                {% endif %}
+            </div>
+        
+        </div>
+    
+        <div class="sm:basis-10/12 content bg-slate-100 rounded-lg mt-1 flex xl:basis-10/12 justify-center xl:w-full xl:h-full">
+            {% block content %}{% endblock %}
+        </div>
+         
     </div>
-     
-
-</div>
 
     
 

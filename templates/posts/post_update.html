@@ -3,35 +3,23 @@
 {% block controller1title %} Tasks {% endblock%}
 {%block content%}
 
-<div class="center">
- <form method="post" novalidate class="card">
- 	{%csrf_token %}
- 	<h2>{% if post %} Update {%else %} Create {%endif%} post</h2>
-	{% for field in form %}
-		{% if field.name == 'completed' %}
-			<p>
-				{{ field.label_tag }}
-				{{ field }}
-			</p>
-			{% if field.errors %}
-        		<small class="error">{{ field.errors|striptags  }}</small> 
-        	{% endif %}
-		{% else %}
-    		{{ field.label_tag }} 
-        	{{ field }}
-        	{% if field.errors %}
-        		<small class="error">{{ field.errors|striptags  }}</small> 
-        	{% endif %}
-        {% endif %}
-	{% endfor %}
-	
-	<div class="form-buttons">
-		<input type="submit" value="Save" class="btn btn-primary"/>
-		<a href="{%url 'posts'%}" class="btn btn-outline">Cancel</a>
+<div class="center w-full h-full">
+	<form method="post" novalidate class=" p-4 card w-full h-[520px] flex flex-col">
+		{%csrf_token %}
+		
+		<h2 class="m-2 text-2xl text-indigo-500 font-semibold">Edit Post</h2>
+	   <input type="text" name="title" maxlength="40" required id="id_title" value="{{ form.instance.title }}" class="rounded-lg p-2 bg-indigo-50">
+	   <textarea name="description" cols="30" rows="10" id="id_description" value="{{ form.instance.description }}" class="mt-2 rounded-lg p-2 bg-indigo-50"></textarea> 
+	   <div class="flex flex-row item-center gap-2 m-2">
+	   <label for="completed">Mark if completed </label><br>
+	   <input type="checkbox" name="completed" id="id_completed" class="form-checkbox " {% if form.instance.completed %}checked{% endif %}>
 	</div>
+	   <div class="form-buttons p-3 m-3">
+		   <button type="submit" value="Create" class="border hover:border-indigo-600 rounded-lg text-white btn btn-primary cursor-pointer bg-indigo-600 hover:bg-white hover:text-indigo-600 p-2">Confirm</button>
+		   <button class="border hover:border-indigo-600 btn btn-outline cursor-pointer bg-indigo-600 rounded-lg text-white hover:bg-white hover:text-indigo-600 p-2" ><a href="{%url 'posts'%}">Cancel</a></button>
+	   </div>
+   </form>
 	
-
-</form>
 </div>
 
 {%endblock content%}
