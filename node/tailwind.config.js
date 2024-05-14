@@ -3,7 +3,8 @@ module.exports = {
   content: [
     '../posts/**/*.html',
     '../profiles/**/*.html',
-    '../templates/*.html',
+    '../templates/posts/*.html',
+    '../templates/profiles/*.html',
     '../**/forms.py'
   ],
   theme: {
