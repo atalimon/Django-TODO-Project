@@ -26,8 +26,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'True'
-
 #DEBUG = True
+
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ")
 #ALLOWED_HOSTS = []
 
@@ -42,14 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'profiles', 
     "posts",
-    'tailwind', 
-    'theme'
 ]
 
-TAILWIND_APP_NAME = 'theme'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -123,12 +122,13 @@ USE_I18N = True
 
 USE_TZ = True
 
-TAILWIND_CSS_PATH = 'css/dist/styles.css'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/staticfiles/'
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
 # Default primary key field type
@@ -141,11 +141,6 @@ AUTH_USER_MODEL = "profiles.CustomUser"
 LOGIN_URL = 'profiles/login/'
 LOGIN_REDIRECT_URL = '/posts/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'tailwind'),
-]
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 INTERNAL_IPS = [
