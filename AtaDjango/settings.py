@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'profiles', 
     "posts",
     'tailwind', 
-    'theme',
+    'theme'
 ]
 
 TAILWIND_APP_NAME = 'theme'
