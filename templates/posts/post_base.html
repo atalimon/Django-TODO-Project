@@ -35,6 +35,7 @@ LIST VIEW TITLE
                 </th>
             </tr>
 			<script> 
+                const baseUrl = 'https://taskify-app-fa1j.onrender.com/';
 				const currentUrl = window.location.href;
 
 				const titleBtn = document.getElementById('titles')
@@ -43,36 +44,36 @@ LIST VIEW TITLE
 
 				statsBtn.addEventListener('click', function (){
 				
-				window.location = 'http://127.0.0.1:8000/posts/?sort_by=completed_asc'
+				window.location = baseUrl + 'posts/?sort_by=completed_asc'
 
-				if (currentUrl === 'http://127.0.0.1:8000/posts/?sort_by=completed_asc') {
-					window.location = 'http://127.0.0.1:8000/posts/?sort_by=completed_desc'
+				if (currentUrl === baseUrl + 'posts/?sort_by=completed_asc') {
+					window.location = baseUrl +  'posts/?sort_by=completed_desc'
 				} else {
-					window.location = 'http://127.0.0.1:8000/posts/?sort_by=completed_asc'
+					window.location = baseUrl +  'posts/?sort_by=completed_asc'
 				}
 				})
 
 
 				titleBtn.addEventListener('click', function (){
 				
-				window.location = 'http://127.0.0.1:8000/posts/?sort_by=title_asc'
+				window.location = baseUrl +  'posts/?sort_by=title_asc'
 
-				if (currentUrl === 'http://127.0.0.1:8000/posts/?sort_by=title_asc') {
-					window.location = 'http://127.0.0.1:8000/posts/?sort_by=title_desc'
+				if (currentUrl === baseUrl + 'posts/?sort_by=title_asc') {
+					window.location = baseUrl +  'posts/?sort_by=title_desc'
 				} else {
-					window.location = 'http://127.0.0.1:8000/posts/?sort_by=title_asc'
+					window.location = baseUrl +  'posts/?sort_by=title_asc'
 				}
 				})
 				
 
 				timesBtn.addEventListener('click', function (){
 				
-				window.location = 'http://127.0.0.1:8000/posts/?sort_by=created_at_asc'
+				window.location =  baseUrl + 'posts/?sort_by=created_at_asc'
 
-				if (currentUrl === 'http://127.0.0.1:8000/posts/?sort_by=created_at_asc') {
-					window.location = 'http://127.0.0.1:8000/posts/?sort_by=created_at_desc'
+				if (currentUrl ===  baseUrl + 'posts/?sort_by=created_at_asc') {
+					window.location =  baseUrl + 'posts/?sort_by=created_at_desc'
 				} else {
-					window.location = 'http://127.0.0.1:8000/posts/?sort_by=created_at_asc'
+					window.location =  baseUrl + 'posts/?sort_by=created_at_asc'
 				}
 				})
 				</script>
