@@ -22,13 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
-#kk = 'django-insecure-p)!0!46dp&wgt!r9w%h6(d3^(17k3!sl^%j%8*-#vu-f)og$0&'
+#SECRET_KEY = 'django-insecure-p)!0!46dp&wgt!r9w%h6(d3^(17k3!sl^%j%8*-#vu-f)og$0&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'True'
 
+#DEBUG = True
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ")
-
+#ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -122,6 +123,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+TAILWIND_CSS_PATH = 'css/dist/styles.css'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -138,6 +140,12 @@ AUTH_USER_MODEL = "profiles.CustomUser"
 
 LOGIN_URL = 'profiles/login/'
 LOGIN_REDIRECT_URL = '/posts/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'tailwind'),
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 INTERNAL_IPS = [
