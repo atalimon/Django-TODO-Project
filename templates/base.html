@@ -5,41 +5,43 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
-<body class=" font-mono h-screen bg-indigo-100 flex justify-center items-center ">
+<body class="min-h-screen bg-slate-50 dark:bg-black dark:text-white">
+    <header class="bg-indigo-700 text-white sticky top-0 z-10 rounded-b-lg">
+        <section class="max-w-4xl mx-auto p-4 flex justify-between items-center"><h2 class="text-4xl font-bold"><a href='{% url "home" %}'>TASKIFY</a></h2>
+        <div>
 
-    <div class="sm:h-full sm:p-2  xl:h-full xl:p-4 sm:m-3 border bg-white  rounded-lg shadow-lg  flex flex-col justify-start ">
-
-        <div class="rounded-lg bg-indigo-50 flex flex-row  p-3  justify-between ">
-            
-            <div class="p-2 ">
-                <h1 class="text-center sm:text-7xl sm:font-extrabold  shadow-xl xl:text-6xl text-indigo-600 font-extrabold">Taskify</h1>
-            </div>
-    
-            <div class=" flex flex-row  items-center ">
+            <nav class="hidden md:block space-x-8 text-lg" aria-label='main'>
                 {% if user.is_authenticated %}
-                <button class=" sm:text-xl xl:text-xl p-2 rounded-lg bg-indigo-600 hover:bg-white hover:text-indigo-600 hover:border-indigo-600 border  text-white "><a href="{% block controller1 %}{% endblock %}">{% block controller1title %}{% endblock %}</a></button>
-            
-                <form class="item-center justify-center m-0" action="{% url 'logout' %}" method="post">
+                <a href="{% block controller1 %} {% endblock %}" class="hover:opacity-70">{% block controller1title %}{% endblock %}</a>
+                <form class="inline" action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
-                    <button class="sm:text-5xl xl:text-xl p-2 rounded-lg bg-indigo-600 hover:bg-white hover:text-indigo-600 hover:border-indigo-600 border  text-white " type="submit">Logout</button>
-                </form>   
-    
+                    <button class="hover:opacity-70" type="submit">Logout</button>
+                </form>  
+                <a href="#" class="text-indigo-200 ">{{ user.user_name }}</a>
                 {% else %}
-                <button class="sm:text-5xl xl:text-xl p-2 rounded-lg bg-indigo-600 hover:bg-white hover:text-indigo-600 hover:border-indigo-600 border text-white"><a  href="{% url 'login' %}">LogIn</a></button>
-                <button class="sm:text-5xl xl:text-xl p-2 rounded-lg bg-indigo-600 hover:bg-white hover:text-indigo-600 hover:border-indigo-600 border text-white "><a  href="{% url 'register' %}">Sign Up</a></button>
+                <a href="{% url 'login' %}" class="hover:opacity-70">Login</a>
+                <a href="{% url 'register' %}" class="hover:opacity-70">Register</a>
                 {% endif %}
-            </div>
+            </nav>
+        </div>
+        </section>  
         
-        </div>
-    
-        <div class=" content bg-slate-100 rounded-lg mt-5 flex  justify-center xl:w-full xl:h-full sm:h-full sm:w-full ">
-            {% block content %}{% endblock %}
-        </div>
-         
-    </div>
+        
+    </header>
+    <main class="max-w-4xl mx-auto">
+    {%block content%}
 
-    
-
-
-
-</body>
+    {%endblock content %}
+    </main>
+    <footer id="footer" class="bg-red-800 text-white text-l">
+    <section class="text-center max-w-xl mx-auto p-4 flex-col sm:flex-row sm:justify-between">
+        <address>
+            <h2>Powered by Atalimon</h2>
+            Ashgabat, Turkmenistan<br>
+            Email: <a href="atalimon1399@gmail.com">atalimon1399@gmail.com</a>
+            <p class="text-center">All Rights Reserved 2024</p>
+        </address>
+    </section>
+    </footer>
+    </body>
+    </html> 

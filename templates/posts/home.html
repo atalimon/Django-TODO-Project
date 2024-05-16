@@ -1,27 +1,21 @@
 {%extends 'base.html'%}
-{%block title %} HOME PAGE {% endblock %}
-
-    {% block controller1 %} {% url 'posts' %} {% endblock%}
-    {% block controller1title %} Posts {% endblock%}
-
+{% block controller1 %} {% url 'posts' %} {% endblock%}
+{% block controller1title %} Tasks {% endblock%}
 
 {% block content %}
-<section class="bg-slate-100 ">
-    <div class=" max-w-full  text-center  ">
 
-        <h2 class="sm:text-9xl sm:p-10 sm:mt-20 xl:m-3 sm:m-25 xl:text-6xl font-extrabold tracking-tight leading-none sm:text-indigo-700 xl:text-indigo-700   xl:p-5">Your go-to task platform</h2>
-        {% if user.is_authenticated %}
-        <p class="xl:p-10 xl:mb-8 sm:p-10 sm:text-6xl xl:text-2xl font-normal sm:text-indigo-400 xl:text-indigo-400 lg:text-xl">Hey {{user.user_name}}! with Taskify, you can manage your schedule easily, with just few clicks make the difference! <br> Get started with checking your <a href="{% url 'posts' %}" class="text-indigo-600 font-semibold hover:text-indigo-200"> Posts!</a></p>
-        {% else %}
-        <p class="xl:p-10 mb-8 sm:text-6xl sm:text-indigo-400 xl:text-2xl">With Taskify, you can manage your schedule easily, with just few clicks make the difference! <br> Get started with <a href="{% url 'register' %}" class="text-indigo-600 font-semibold hover:text-indigo-200">Creating account</a> or <a href="{% url 'login' %}" class="text-indigo-600 font-semibold hover:text-indigo-200">Login!</a></p>
-        {% endif %}
-        <div class="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-            <a href="https://github.com/atalimon/Django-TODO-Project" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center sm:text-5xl xl:text-3xl text-indigo-700 rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
-                Learn more
-            </a> 
-        </div>
-        
-    </div>
-</section>
 
-{%endblock%}
+    <section id="hero" class="min-h-screen flex flex-col-reverse justify-center align-middle px-6 items-center gap-8 mb-12 scroll-mt-40 sm:flex-row  ">
+        <article class="sm:w-1/2">
+            <h2 class="max-w-md text-5xl font-bold text-center sm:text-5xl sm:text-left text-slate-900.dark:text-white">Easy, simple <span class="text-indigo-700 dark:text indigo-300"> Taskify.</span></h2>
+            <p class="max-w-md text-3xl mt-4 text-center sm:text-left text-slate-700 dark:text-slate-400">
+                Are tired of those complex task management app? Taskify is just right for you!
+            </p>
+            <p class="max-w-md text-2xl mt-4 text-center sm:text-left text-red-700 dark:text-red-700">Simply</p>
+        </article>
+       
+    </section>
+
+
+
+{% endblock %}

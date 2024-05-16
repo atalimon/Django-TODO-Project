@@ -9,9 +9,9 @@ LIST VIEW TITLE
 {% block content %}
 
 
-<div class="overflow-scroll w-full rounded-lg ">
-    <table class="xl:w-full  sm:w-full sm:h-full xl:text-sm sm:text-4xl text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="xl:text-lg  sm:text-5xl text-gray-700 uppercase bg-indigo-50 dark:bg-indigo-700 dark:text-white">
+
+    <table class="min-h-screen min-w-full rounded-lg  justify-center  px-6 items-center gap-2 mb-12 mt-20 scroll-mt-30 ">
+        <thead class="xl:text-lg sm:text-5xl w-full text-gray-700 uppercase bg-indigo-50 dark:bg-indigo-700 dark:text-white">
             <tr>
                 <th id="titles" scope="col" class="px-6 py-3 cursor-pointer hover:text-indigo-900">
                     Titles
@@ -35,7 +35,7 @@ LIST VIEW TITLE
                 </th>
             </tr>
 			<script> 
-                const baseUrl = 'https://taskify-app-fa1j.onrender.com/';
+                const baseUrl = 'http://127.0.0.1:8000/';
 				const currentUrl = window.location.href;
 
 				const titleBtn = document.getElementById('titles')
@@ -78,7 +78,7 @@ LIST VIEW TITLE
 				})
 				</script>
         </thead>
-        <tbody>
+        <tbody class="max-w-full w-full ">
 			{% for post in posts %}
             <tr class="bg-white border-b dark:bg-indigo-800 dark:border-indigo-700">
                 <th scope="row" class="px-6 py-4 font-medium text-indigo-500 whitespace-nowrap dark:text-white hover:text-indigo-500">
@@ -110,6 +110,6 @@ LIST VIEW TITLE
         </tbody>
     </table>
 
-</div>
+
 
 {% endblock  %}
