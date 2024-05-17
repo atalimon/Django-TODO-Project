@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 {% load static %}
 <head>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/output.css' %}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body class="min-h-screen bg-slate-50 dark:bg-black dark:text-white">
     <header class="bg-indigo-700 text-white sticky top-0 z-10 rounded-b-lg">
-        <section class="max-w-4xl mx-auto p-4 flex justify-between items-center"><h2 class="text-4xl font-bold"><a href='{% url "home" %}'>TASKIFY</a></h2>
+        <section class="max-w-4xl mx-auto p-4 flex justify-between items-center"><h2 class="xl:text-4xl sm:text-7xl font-bold"><a href='{% url "home" %}'>TASKIFY</a></h2>
         <div>
 
-            <nav class="hidden md:block space-x-8 text-lg" aria-label='main'>
+            <nav class="hidden md:block space-x-8 xl:text-lg sm:text-5xl" aria-label='main'>
                 {% if user.is_authenticated %}
                 <a href="{% block controller1 %} {% endblock %}" class="hover:opacity-70">{% block controller1title %}{% endblock %}</a>
                 <form class="inline" action="{% url 'logout' %}" method="post">
@@ -28,12 +28,12 @@
         
         
     </header>
-    <main class="max-w-4xl mx-auto">
+    <main class="max-w-4xl mx-auto min-h-screen">
     {%block content%}
 
     {%endblock content %}
     </main>
-    <footer id="footer" class="bg-red-800 text-white text-l">
+    <footer id="footer" class="bg-red-800 text-white xl:text-lg sm:text-4xl">
     <section class="text-center max-w-xl mx-auto p-4 flex-col sm:flex-row sm:justify-between">
         <address>
             <h2>Powered by Atalimon</h2>

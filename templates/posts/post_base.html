@@ -10,8 +10,8 @@ LIST VIEW TITLE
 
 
 
-    <table class="min-h-screen min-w-full rounded-lg  justify-center  px-6 items-center gap-2 mb-12 mt-20 scroll-mt-30 ">
-        <thead class="xl:text-lg sm:text-5xl w-full text-gray-700 uppercase bg-indigo-50 dark:bg-indigo-700 dark:text-white">
+    <table class="xl:min-h-full xl:min-w-full sm:min-h-screen sm:w-full overflow-auto  justify-center  px-6 items-center gap-2 mb-12 mt-20 scroll-mt-30 ">
+        <thead class="xl:text-lg sm:text-5xl w-full text-gray-700 uppercase bg-indigo-50 dark:bg-indigo-700 dark:text-white ">
             <tr>
                 <th id="titles" scope="col" class="px-6 py-3 cursor-pointer hover:text-indigo-900">
                     Titles
@@ -80,8 +80,8 @@ LIST VIEW TITLE
         </thead>
         <tbody class="max-w-full w-full ">
 			{% for post in posts %}
-            <tr class="bg-white border-b dark:bg-indigo-800 dark:border-indigo-700">
-                <th scope="row" class="px-6 py-4 font-medium text-indigo-500 whitespace-nowrap dark:text-white hover:text-indigo-500">
+            <tr class="bg-white border-b dark:bg-indigo-800 dark:border-indigo-700 sm:text-3xl xl:text-lg">
+                <th scope="row" class="px-3 py-2 font-medium  text-indigo-500 whitespace-nowrap dark:text-white hover:text-indigo-500">
                     {% if post.completed %}
 					<a class="line-through" href="{% url 'post' post.id %}">
                     {{ post.title }} </a>
@@ -90,13 +90,13 @@ LIST VIEW TITLE
                         {{ post.title }} </a>   
                     {% endif %}
                 </th>
-                <td class="px-6 py-4">
+                <td class="px-3 py-2">
                     {% if post.completed %} DONE {% else %} PENDING {% endif %}
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-3 py-2">
                     {{ post.created_at|timesince }}
                 </td>
-                <td class="px-6 py-4 text-right">
+                <td class="px-3 py-2 text-right">
                     <a href="{% url 'post-update' post.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
 					<a href="{% url 'post-delete' post.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Del</a>
                 </td>
