@@ -10,9 +10,6 @@ from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import PostCreationForm, PostUpdateForm
 
-
-
-
 class TempView(TemplateView):
     template_name = 'posts/home.html'
 
@@ -28,27 +25,29 @@ class PostList(LoginRequiredMixin, ListView):
         return context
 
     def get_queryset(self):
-        queryset = super().get_queryset()
-        sort_by = self.request.GET.get('sort_by')
-        if sort_by == 'title_asc':
-            queryset = queryset.order_by('title')
-        elif sort_by == 'title_desc':
-            queryset = queryset.order_by('-title')
-        elif sort_by == 'created_at_asc':
-            queryset = queryset.order_by('created_at')
-        elif sort_by == 'created_at_desc':
-            queryset = queryset.order_by('-created_at')
-        elif sort_by == 'completed_desc':
-            queryset = queryset.order_by('-completed')
-        elif sort_by == 'completed_asc':
-            queryset = queryset.order_by('completed')
-        elif sort_by == 'target_date_desc':
-            queryset = queryset.order_by('target_date')
-        elif sort_by == 'target_date_asc':
-            queryset = queryset.order_by('-target_date')
+        try:
+          queryset = super().get_queryset()
+          sort_by = self.request.GET.get('sort_by')
+          if sort_by == 'title_asc':
+              queryset = queryset.order_by('title')
+          elif sort_by == 'title_desc':
+              queryset = queryset.order_by('-title')
+          elif sort_by == 'created_at_asc':
+              queryset = queryset.order_by('created_at')
+          elif sort_by == 'created_at_desc':
+              queryset = queryset.order_by('-created_at')
+          elif sort_by == 'completed_desc':
+              queryset = queryset.order_by('-completed')
+          elif sort_by == 'completed_asc':
+              queryset = queryset.order_by('completed')
+          elif sort_by == 'target_date_asc':
+              queryset = queryset.order_by('target_date')
+          elif sort_by == 'target_date_desc':
+              queryset = queryset.order_by('-target_date')
+        except Exception as e:
+            print("Error in get_queryset:", e)
+            queryset = super().get_queryset()  # Fallback to default queryset
         return queryset
-
-
 
 class PostDetail(LoginRequiredMixin, DetailView):
     model = Post
@@ -59,8 +58,6 @@ class PostDetail(LoginRequiredMixin, DetailView):
         base_qs = super(PostDetail, self).get_queryset()
         return base_qs.filter(user=self.request.user)
     
-
-
 class PostCreate(LoginRequiredMixin, CreateView):
     template_name = 'posts/post_form.html'
     model = Post
