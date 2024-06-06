@@ -43,9 +43,9 @@ class PostList(LoginRequiredMixin, ListView):
         elif sort_by == 'completed_asc':
             queryset = queryset.order_by('completed')
         elif sort_by == 'target_date_desc':
-            queryset = queryset.order_by('-target_date')
-        elif sort_by == 'target_date_asc':
             queryset = queryset.order_by('target_date')
+        elif sort_by == 'target_date_asc':
+            queryset = queryset.order_by('-target_date')
         return queryset
 
 
