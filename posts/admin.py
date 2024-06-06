@@ -7,7 +7,7 @@ from .models import Post
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'user', 'completed', 'created_at')
+    list_display = ('title', 'user', 'completed', 'created_at', 'target_date')
     list_filter = ('completed', 'created_at')
     search_fields = ('title', 'user__username')
     date_hierarchy = 'created_at'
@@ -15,7 +15,7 @@ class PostAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('title', 'user', 'description', 'completed')
+            'fields': ('title', 'user', 'description', 'completed', 'target_date')
         }),
         ('Date Information', {
             'fields': ('created_at',),

@@ -3,13 +3,14 @@
 {% block controller1title %} Tasks {% endblock%}
 {%block content%}
 
-<div class="center w-full h-full sm:h-screen">
-	<form method="post" novalidate class=" p-4 card w-full h-[520px] sm:h-full flex flex-col">
+<div class="center sm:w-full h-full flex justify-center">
+	<form method="post" novalidate class="p-4 card sm:w-full sm:h-full xl:w-3/6 xl:h-[520px] flex flex-col sm:mt-7">
 		{%csrf_token %}
 		
 		<h2 class="m-2 xl:text-3xl sm:text-8xl sm:mb-5 text-indigo-500 font-semibold">Edit Post</h2>
 	   <input type="text" name="title" maxlength="40" required id="id_title" value="{{ form.instance.title }}" class="sm:text-6xl xl:text-xl rounded-lg p-2 bg-indigo-200 text-black">
 	   <textarea type="text" name="description" cols="30" rows="30" id="id_description" value="{{ form.instance.description }}" class="sm:text-6xl xl:text-xl sm:mt-10 xl:mt-2 rounded-lg p-2 bg-indigo-200 text-black">{{ form.instance.description }}</textarea> 
+	   <input  type="datetime-local" name="target_date" maxlength="40" required id="id_target_date" placeholder="Due date" class="text-black rounded-lg xl:p-4 sm:p-2 bg-indigo-50 sm:text-6xl sm:mt-2 xl:text-xl sm:w-auto xl:w-auto">
 	   <div class="flex flex-row item-center gap-2 m-2 sm:text-5xl xl:text-xl">
 	   <label for="completed">Mark if completed </label><br>
 	   <input type="checkbox" name="completed" id="id_completed" class="sm:h-10 sm:w-10 xl:h-5 xl:w-5 form-checkbox " {% if form.instance.completed %}checked{% endif %}>

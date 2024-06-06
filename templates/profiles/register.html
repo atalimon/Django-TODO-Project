@@ -10,10 +10,10 @@
 
 <!-- component -->
 <!-- Create by joker banny -->
-<div class="h-screen bg-indigo-100 flex justify-center items-center flex-col">
+<div class="h-screen bg-indigo-400 flex justify-center items-center flex-col">
 	<div class="sm:w-4/5 lg:w-2/5  sm:text-6xl xl:text-xl xl:w-2/5">
 		<form method="post" action="{% url 'register' %}" class="sm:p-20 sm:shadow-xl bg-white group p-10 rounded-lg shadow-lg min-w-full" novalidate  >
-			<h1 class="text-center xl:text-3xl sm:text-7xl mb-6 text-gray-600 font-bold font-sans">Register</h1>
+			<h1 class="text-center xl:text-3xl sm:text-7xl mb-6 text-indigo-600 font-bold font-sans">Register</h1>
 			{% csrf_token %}
 			<div>
 				<label class="text-gray-800 font-semibold block my-3 text-md" for="username">Username</label>
@@ -54,7 +54,7 @@
 		<div class="error-messages  ">
 			{% for field, errors in form.errors.items %}
 				{% for error in errors %}
-				<div  class="error errorbar sm:text-3xl sm:p-4 p-3 text-center bg-red-600 text-white xl:w-3/6  xl:h-14 sm:h-auto rounded-lg m-4 static flex flex-row justify-center">
+				<div  class="error errorbar sm:text-3xl sm:p-4 p-3 text-center bg-red-600 text-white xl:w-5/6  xl:h-14 sm:h-auto rounded-lg m-4 static flex flex-row justify-center">
 					<p class="sm:text-3xl xl:text-lg"> {{ error }}</p>
 					<button id="closebtn"><span class="material-symbols-outlined relative top-0 left-0">
 						x

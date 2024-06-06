@@ -9,8 +9,8 @@ LIST VIEW TITLE
 {% block content %}
 
 
-
-    <table class="xl:min-h-full xl:min-w-full sm:min-h-screen sm:w-full overflow-auto  justify-center  px-6 items-center gap-2 mb-12 mt-20 scroll-mt-30 ">
+<div class="relative overflow-x-auto overflow-y-auto ">
+    <table class="w-full  xl:h-[80vh] sm:h-[80vh]  overflow-x-auto overflow-y-scroll">
         <thead class="xl:text-lg sm:text-5xl w-full text-gray-700 uppercase bg-indigo-50 dark:bg-indigo-700 dark:text-white ">
             <tr>
                 <th id="titles" scope="col" class="px-6 py-3 cursor-pointer hover:text-indigo-900">
@@ -25,10 +25,18 @@ LIST VIEW TITLE
                 </th>
                 <th id="times" scope="col" class="px-6 py-3 cursor-pointer hover:text-indigo-900">
                     <div class="flex items-center">
-                        Time
-  </svg></a>
+                        Created
+  
                     </div>
                 </th>
+
+                <th id="duedate" scope="col" class="flex items-center px-6 py-3 cursor-pointer hover:text-indigo-900">
+                    <div class="">
+                        Deadline
+  
+                    </div>
+                </th>
+
                 <th scope="col" class="px-6 py-3">
                     <span class="sr-only">Edit</span>
 					<span class="sr-only">Del</span>
@@ -41,6 +49,7 @@ LIST VIEW TITLE
 				const titleBtn = document.getElementById('titles')
 				const statsBtn = document.getElementById('statuses')
 				const timesBtn = document.getElementById('times')
+                const dueBtn = document.getElementById('duedate')
 
 				statsBtn.addEventListener('click', function (){
 				
@@ -50,6 +59,17 @@ LIST VIEW TITLE
 					window.location = baseUrl +  'posts/?sort_by=completed_desc'
 				} else {
 					window.location = baseUrl +  'posts/?sort_by=completed_asc'
+				}
+				})
+
+                dueBtn.addEventListener('click', function (){
+				
+				window.location = baseUrl + 'posts/?sort_by=target_date_asc'
+
+				if (currentUrl === baseUrl + 'posts/?sort_by=target_date_asc') {
+					window.location = baseUrl +  'posts/?sort_by=target_date_desc'
+				} else {
+					window.location = baseUrl +  'posts/?sort_by=target_date_asc'
 				}
 				})
 
@@ -96,9 +116,16 @@ LIST VIEW TITLE
                 <td class="px-3 py-2">
                     {{ post.created_at|timesince }}
                 </td>
+                <td class="px-3 py-2">
+                    {{ post.target_date|timeuntil }}
+                </td>
                 <td class="px-3 py-2 text-right">
-                    <a href="{% url 'post-update' post.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-					<a href="{% url 'post-delete' post.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Del</a>
+                    <a href="{% url 'post-update' post.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:text-white"><span class="material-symbols-outlined sm:text-6xl">
+                        edit
+                        </span></a>
+					<a href="{% url 'post-delete' post.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:text-red-600"><span class="material-symbols-outlined sm:text-6xl hover:text-red-500">
+                        cancel
+                        </span></a>
                 </td>
             </tr>
 			{% endfor %}
@@ -109,7 +136,42 @@ LIST VIEW TITLE
 			{% endif %}
         </tbody>
     </table>
+</div>
 
 
+    {% if messages %}
+
+<div id="bottom-banner" tabindex="-1" class="fixed bottom-0 start-0 z-50 flex justify-between w-full p-4 border-t border-gray-200 bg-green-300 dark:bg-green-700 dark:border-green-600">
+    <div class="flex items-center mx-auto">
+        <p class="flex items-center xl:text-lg sm:text-4xl font-normal text-white dark:text-white">        
+                {% for message in messages %} 
+
+            <span>{{ message }}</span>
+        </p>
+        {% endfor %}
+    </div>
+    <div class="flex items-center">
+        <button data-dismiss-target="#bottom-banner" type="button" id="closealert" class="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white"> 
+            <svg class=" sm:w-10 sm:h-10 xl:w-3 xl:h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+            </svg>
+            <span class="sr-only">Close banner</span>
+        </button>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    const closewin = document.getElementById("bottom-banner")
+    const closealert = document.getElementById("closealert")
+
+    closealert.addEventListener("click", function() {
+        closewin.classList.add("hidden")
+    }  )
+
+    closewin.addEventListener("click", function() {
+        closewin.classList.add("hidden")
+    }  )
+</script>
 
 {% endblock  %}

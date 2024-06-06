@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import PostCreationForm, PostUpdateForm
 
 
 
@@ -41,6 +42,10 @@ class PostList(LoginRequiredMixin, ListView):
             queryset = queryset.order_by('-completed')
         elif sort_by == 'completed_asc':
             queryset = queryset.order_by('completed')
+        elif sort_by == 'target_date_desc':
+            queryset = queryset.order_by('-target_date')
+        elif sort_by == 'target_date_asc':
+            queryset = queryset.order_by('target_date')
         return queryset
 
 
@@ -59,7 +64,7 @@ class PostDetail(LoginRequiredMixin, DetailView):
 class PostCreate(LoginRequiredMixin, CreateView):
     template_name = 'posts/post_form.html'
     model = Post
-    fields = ['title', 'description']
+    form_class = PostCreationForm
     success_url = reverse_lazy('posts')
 
     def form_valid(self, form):
@@ -70,8 +75,8 @@ class PostCreate(LoginRequiredMixin, CreateView):
 class PostUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'posts/post_update.html'
     model = Post
-    fields = ['title', 'description', 'completed']
     success_url = reverse_lazy('posts')
+    form_class = PostUpdateForm
 
     def form_valid(self, form):
         messages.success(self.request, 'Post Updated!')
