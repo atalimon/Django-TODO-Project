@@ -27,10 +27,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'True'
-#DEBUG =  True
+#DEBUG =  False
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ")
-#ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -89,6 +89,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 databases_url = os.environ.get('DATABASE_URL')
 DATABASES['default'] = dj_database_url.parse(databases_url)

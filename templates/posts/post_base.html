@@ -48,8 +48,7 @@ LIST VIEW TITLE
 				const titleBtn = document.getElementById('titles')
 				const statsBtn = document.getElementById('statuses')
 				const timesBtn = document.getElementById('times')
-                const dueBtn = document.getElementById('duedate')
-
+                
 				statsBtn.addEventListener('click', function (){
 				
 				window.location = baseUrl + 'posts/?sort_by=completed_asc'
@@ -58,17 +57,6 @@ LIST VIEW TITLE
 					window.location = baseUrl +  'posts/?sort_by=completed_desc'
 				} else {
 					window.location = baseUrl +  'posts/?sort_by=completed_asc'
-				}
-				})
-
-                dueBtn.addEventListener('click', function (){
-				
-				window.location = baseUrl + 'posts/?sort_by=target_date_asc'
-
-				if (currentUrl === baseUrl + 'posts/?sort_by=target_date_asc') {
-					window.location = baseUrl + 'posts/?sort_by=target_date_desc'
-				} else {
-					window.location = baseUrl +  'posts/?sort_by=target_date_asc'
 				}
 				})
 
@@ -95,7 +83,7 @@ LIST VIEW TITLE
 					window.location =  baseUrl + 'posts/?sort_by=created_at_asc'
 				}
 				})
-
+                
 				</script>
         </thead>
         <tbody class="max-w-full w-full ">
@@ -137,10 +125,6 @@ LIST VIEW TITLE
         </tbody>
     </table>
 </div>
-
-
-
-
 
 
 {% endblock  %}
