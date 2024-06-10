@@ -21,10 +21,9 @@ LIST VIEW TITLE
             </div>
         </li>
 
-        {% for post in posts %}
         <li class="bg-white border-b dark:bg-indigo-800 dark:border-indigo-700 sm:text-3xl xl:text-lg flex">
             <div class="flex-1 px-3 py-2 font-medium text-indigo-500 whitespace-nowrap dark:text-white hover:text-indigo-500">
-                <a href="#">{{ post.title }}</a>
+                <a href="#"></a>
             </div>
             <div class="flex-1 px-3 py-2">
                 DONE
@@ -40,11 +39,8 @@ LIST VIEW TITLE
                 <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:text-red-600"><span class="material-symbols-outlined sm:text-6xl hover:text-red-500">cancel</span></a>
             </div>
         </li>
-        {% endfor %}
-
-        {% if not posts %}
+        
         <li class="text-center">You have no pending posts! Let's <a href="#">Create a Post!</a></li>
-        {% endif %}
     </ul>
 </div>
 
