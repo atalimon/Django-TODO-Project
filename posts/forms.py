@@ -6,7 +6,6 @@ from .models import Post
 from django.contrib.admin.widgets import AdminDateWidget
 
 
-
 class DateInput(forms.DateInput):
     input_type = 'datetime-local'
 
@@ -18,8 +17,6 @@ class PostCreationForm(TargetDateValidationMixin, ModelForm):
             'target_date': DateInput(),
         }
 
-   
-    
 
 class PostUpdateForm(TargetDateValidationMixin, ModelForm):
     class Meta:
