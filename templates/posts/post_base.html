@@ -24,20 +24,20 @@ LIST VIEW TITLE
         {% for post in posts %}
         <li class="bg-white border-b dark:bg-indigo-800 dark:border-indigo-700 sm:text-3xl xl:text-lg flex">
             <div class="flex-1 px-3 py-2 font-medium text-indigo-500 whitespace-nowrap dark:text-white hover:text-indigo-500">
-                <a href="{% url 'post' post.id %}">{{ post.title }}</a>
+                <a href="#">{{ post.title }}</a>
             </div>
             <div class="flex-1 px-3 py-2">
                 DONE
             </div>
             <div class="flex-1 px-3 py-2">
-                {{ post.created_at|timesince }}
+                CREATED
             </div>
             <div class="flex-1 px-3 py-2">
                 TARGET
             </div>
             <div class="flex-1 px-3 py-2 text-right">
                 <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:text-white"><span class="material-symbols-outlined sm:text-6xl">edit</span></a>
-                <a href="{% url 'post-delete' post.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:text-red-600"><span class="material-symbols-outlined sm:text-6xl hover:text-red-500">cancel</span></a>
+                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:text-red-600"><span class="material-symbols-outlined sm:text-6xl hover:text-red-500">cancel</span></a>
             </div>
         </li>
         {% endfor %}
