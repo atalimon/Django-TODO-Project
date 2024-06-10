@@ -606,10 +606,6 @@ video {
   z-index: 50;
 }
 
-.m-1 {
-  margin: 0.25rem;
-}
-
 .m-2 {
   margin: 0.5rem;
 }
@@ -740,10 +736,6 @@ video {
   max-width: 36rem;
 }
 
-.flex-1 {
-  flex: 1 1 0%;
-}
-
 .flex-shrink-0 {
   flex-shrink: 0;
 }
@@ -774,10 +766,6 @@ video {
 
 .items-center {
   align-items: center;
-}
-
-.items-baseline {
-  align-items: baseline;
 }
 
 .justify-center {
@@ -828,10 +816,6 @@ video {
 
 .rounded-lg {
   border-radius: 0.5rem;
-}
-
-.rounded-full {
-  border-radius: 9999px;
 }
 
 .rounded-b-lg {
@@ -948,10 +932,6 @@ video {
 
 .p-4 {
   padding: 1rem;
-}
-
-.p-5 {
-  padding: 1.25rem;
 }
 
 .p-8 {
@@ -1203,11 +1183,6 @@ video {
 }
 
 @media (min-width: 640px) {
-  .sm\:my-20 {
-    margin-top: 5rem;
-    margin-bottom: 5rem;
-  }
-
   .sm\:mb-5 {
     margin-bottom: 1.25rem;
   }
@@ -1278,15 +1253,6 @@ video {
 
   .sm\:rounded-lg {
     border-radius: 0.5rem;
-  }
-
-  .sm\:rounded-l-none {
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-  }
-
-  .sm\:p-10 {
-    padding: 2.5rem;
   }
 
   .sm\:p-2 {
@@ -1389,40 +1355,16 @@ video {
     height: 1.25rem;
   }
 
+  .xl\:h-\[50rem\] {
+    height: 50rem;
+  }
+
   .xl\:h-\[520px\] {
     height: 520px;
   }
 
   .xl\:h-\[80vh\] {
     height: 80vh;
-  }
-
-  .xl\:h-full {
-    height: 100%;
-  }
-
-  .xl\:h-screen {
-    height: 100vh;
-  }
-
-  .xl\:h-\[60\%\] {
-    height: 60%;
-  }
-
-  .xl\:h-3\/6 {
-    height: 50%;
-  }
-
-  .xl\:h-96 {
-    height: 24rem;
-  }
-
-  .xl\:h-\[129rem\] {
-    height: 129rem;
-  }
-
-  .xl\:h-\[50rem\] {
-    height: 50rem;
   }
 
   .xl\:min-h-screen {
@@ -1453,24 +1395,16 @@ video {
     width: 83.333333%;
   }
 
+  .xl\:w-\[80\%\] {
+    width: 80%;
+  }
+
   .xl\:w-auto {
     width: auto;
   }
 
   .xl\:w-full {
     width: 100%;
-  }
-
-  .xl\:w-3\/4 {
-    width: 75%;
-  }
-
-  .xl\:w-96 {
-    width: 24rem;
-  }
-
-  .xl\:w-\[80\%\] {
-    width: 80%;
   }
 
   .xl\:max-w-full {
@@ -1487,10 +1421,6 @@ video {
 
   .xl\:p-4 {
     padding: 1rem;
-  }
-
-  .xl\:p-2 {
-    padding: 0.5rem;
   }
 
   .xl\:text-2xl {
