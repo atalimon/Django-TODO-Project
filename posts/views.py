@@ -25,20 +25,28 @@ class PostList(LoginRequiredMixin, ListView):
         return context
 
     def get_queryset(self):
-        queryset = super().get_queryset()
-        sort_by = self.request.GET.get('sort_by')
-        if sort_by == 'title_asc':
-            queryset = queryset.order_by('title')
-        elif sort_by == 'title_desc':
-            queryset = queryset.order_by('-title')
-        elif sort_by == 'created_at_asc':
-            queryset = queryset.order_by('created_at')
-        elif sort_by == 'created_at_desc':
-            queryset = queryset.order_by('-created_at')
-        elif sort_by == 'completed_desc':
-            queryset = queryset.order_by('-completed')
-        elif sort_by == 'completed_asc':
-            queryset = queryset.order_by('completed')
+        try:
+          queryset = super().get_queryset()
+          sort_by = self.request.GET.get('sort_by')
+          if sort_by == 'title_asc':
+              queryset = queryset.order_by('title')
+          elif sort_by == 'title_desc':
+              queryset = queryset.order_by('-title')
+          elif sort_by == 'created_at_asc':
+              queryset = queryset.order_by('created_at')
+          elif sort_by == 'created_at_desc':
+              queryset = queryset.order_by('-created_at')
+          elif sort_by == 'completed_desc':
+              queryset = queryset.order_by('-completed')
+          elif sort_by == 'completed_asc':
+              queryset = queryset.order_by('completed')
+          elif sort_by == 'target_date_asc':
+              queryset = queryset.order_by('target_date')
+          elif sort_by == 'target_date_desc':
+              queryset = queryset.order_by('-target_date')
+        except Exception as e:
+            print("Error in get_queryset:", e)
+            queryset = super().get_queryset()  # Fallback to default queryset
         return queryset
 
 class PostDetail(LoginRequiredMixin, DetailView):
