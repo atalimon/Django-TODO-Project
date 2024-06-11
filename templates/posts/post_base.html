@@ -41,62 +41,7 @@ LIST VIEW TITLE
 					<span class="sr-only">Del</span>
                 </th>
             </tr>
-			<script> 
-                const baseUrl = 'https://taskify-app-fa1j.onrender.com/';
-				const currentUrl = window.location.href;
-
-				const titleBtn = document.getElementById('titles')
-				const statsBtn = document.getElementById('statuses')
-				const timesBtn = document.getElementById('times')
-                const dueBtn = document.getElementById('duedate')
-
-				statsBtn.addEventListener('click', function (){
-				
-				window.location = baseUrl + 'posts/?sort_by=completed_asc'
-
-				if (currentUrl === baseUrl + 'posts/?sort_by=completed_asc') {
-					window.location = baseUrl +  'posts/?sort_by=completed_desc'
-				} else {
-					window.location = baseUrl +  'posts/?sort_by=completed_asc'
-				}
-				})
-
-                dueBtn.addEventListener('click', function (){
-				
-				window.location = baseUrl + 'posts/?sort_by=target_date_asc'
-
-				if (currentUrl === baseUrl + 'posts/?sort_by=target_date_asc') {
-					window.location = baseUrl + 'posts/?sort_by=target_date_desc'
-				} else {
-					window.location = baseUrl +  'posts/?sort_by=target_date_asc'
-				}
-				})
-
-
-				titleBtn.addEventListener('click', function (){
-				
-				window.location = baseUrl +  'posts/?sort_by=title_asc'
-
-				if (currentUrl === baseUrl + 'posts/?sort_by=title_asc') {
-					window.location = baseUrl +  'posts/?sort_by=title_desc'
-				} else {
-					window.location = baseUrl +  'posts/?sort_by=title_asc'
-				}
-				})
-				
-
-				timesBtn.addEventListener('click', function (){
-				
-				window.location =  baseUrl + 'posts/?sort_by=created_at_asc'
-
-				if (currentUrl ===  baseUrl + 'posts/?sort_by=created_at_asc') {
-					window.location =  baseUrl + 'posts/?sort_by=created_at_desc'
-				} else {
-					window.location =  baseUrl + 'posts/?sort_by=created_at_asc'
-				}
-				})
-                
-				</script>
+			
         </thead>
         <tbody class="max-w-full w-full ">
 			{% for post in posts %}
@@ -159,16 +104,81 @@ LIST VIEW TITLE
 </div>
 
 <script>
-    const closewin = document.getElementById("bottom-banner")
-    const closealert = document.getElementById("closealert")
+    document.addEventListener("DOMContentLoaded", function() {
+        const closewin = document.getElementById("bottom-banner");
+        const closealert = document.getElementById("closealert");
 
-    closealert.addEventListener("click", function() {
-        closewin.classList.add("hidden")
-    }  )
+        if (closealert) {
+            closealert.addEventListener("click", function() {
+                if (closewin) {
+                    closewin.classList.add("hidden");
+                }
+            });
+        }
 
-    closewin.addEventListener("click", function() {
-        closewin.classList.add("hidden")
-    }  )
+        if (closewin) {
+            closewin.addEventListener("click", function() {
+                closewin.classList.add("hidden");
+            });
+        }
+    });
 </script>
+
+<script> 
+    const baseUrl = 'https://taskify-app-fa1j.onrender.com/';
+    const currentUrl = window.location.href;
+
+    const titleBtn = document.getElementById('titles')
+    const statsBtn = document.getElementById('statuses')
+    const timesBtn = document.getElementById('times')
+    const dueBtn = document.getElementById('duedate')
+
+    statsBtn.addEventListener('click', function (){
+    
+    window.location = baseUrl + 'posts/?sort_by=completed_asc'
+
+    if (currentUrl === baseUrl + 'posts/?sort_by=completed_asc') {
+        window.location = baseUrl +  'posts/?sort_by=completed_desc'
+    } else {
+        window.location = baseUrl +  'posts/?sort_by=completed_asc'
+    }
+    })
+
+    dueBtn.addEventListener('click', function (){
+    
+    window.location = baseUrl + 'posts/?sort_by=target_date_asc'
+
+    if (currentUrl === baseUrl + 'posts/?sort_by=target_date_asc') {
+        window.location = baseUrl + 'posts/?sort_by=target_date_desc'
+    } else {
+        window.location = baseUrl +  'posts/?sort_by=target_date_asc'
+    }
+    })
+
+
+    titleBtn.addEventListener('click', function (){
+    
+    window.location = baseUrl +  'posts/?sort_by=title_asc'
+
+    if (currentUrl === baseUrl + 'posts/?sort_by=title_asc') {
+        window.location = baseUrl +  'posts/?sort_by=title_desc'
+    } else {
+        window.location = baseUrl +  'posts/?sort_by=title_asc'
+    }
+    })
+    
+
+    timesBtn.addEventListener('click', function (){
+    
+    window.location =  baseUrl + 'posts/?sort_by=created_at_asc'
+
+    if (currentUrl ===  baseUrl + 'posts/?sort_by=created_at_asc') {
+        window.location =  baseUrl + 'posts/?sort_by=created_at_desc'
+    } else {
+        window.location =  baseUrl + 'posts/?sort_by=created_at_asc'
+    }
+    })
+    
+    </script>
 
 {% endblock  %}

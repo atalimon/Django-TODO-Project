@@ -45,16 +45,24 @@
 </div>
 
 <script>
-    const closewin = document.getElementById("bottom-banner")
-    const closealert = document.getElementById("closealert")
+    document.addEventListener("DOMContentLoaded", function() {
+        const closewin = document.getElementById("bottom-banner");
+        const closealert = document.getElementById("closealert");
 
-    closealert.addEventListener("click", function() {
-        closewin.classList.add("hidden")
-    }  )
+        if (closealert) {
+            closealert.addEventListener("click", function() {
+                if (closewin) {
+                    closewin.classList.add("hidden");
+                }
+            });
+        }
 
-    closewin.addEventListener("click", function() {
-        closewin.classList.add("hidden")
-    }  )
+        if (closewin) {
+            closewin.addEventListener("click", function() {
+                closewin.classList.add("hidden");
+            });
+        }
+    });
 </script>
 
 {%endblock content%}

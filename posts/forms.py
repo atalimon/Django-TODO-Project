@@ -6,7 +6,7 @@ from .models import Post
 
 
 class DateTimeInput(forms.DateTimeInput):
-    input_type = 'datetime-local'
+    input_type = 'text'
 
 class PostCreationForm(ModelForm):
     class Meta:
@@ -22,5 +22,5 @@ class PostUpdateForm(ModelForm):
         model = Post
         fields = ['title', 'description', 'completed', 'target_date']
         widgets = {
-            'target_date': forms.DateTimeInput(),
+            'target_date': DateTimeInput(),
         }
